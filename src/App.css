@@ -1,0 +1,91 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+h1{
+    font-size: 3em;
+}
+
+input{
+    border: 1px solid black;
+    padding: 5px;
+    margin: 25px 10px;
+}
+
+sup{
+    color: red;
+}
+
+button{
+    border: none;
+    padding: 5px;
+    width: 50px;
+    color: white;
+    background-color: rgba(0, 0, 189, 0.7);
+}
+
+button:hover {
+    background-color: rgba(0, 0, 189, 0.9);
+}
+
+.container{
+    text-align: center;
+    background-color: rgb(240, 240, 240);
+    font-size: 16px;
+    min-height: 150px;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.weather{
+    min-height: 300px;
+}
+
+.city-weather{
+    display: flex;
+    font-size: 1.8em;
+    padding: 10px;
+}
+
+.city-details > div{
+    text-align: center;
+    margin: 10px;
+}
+
+.forecast-chart{
+    padding:0px 200px;
+    height: 50px;
+}
+
+.btn-group button {
+    margin: 30px 0px 0px;
+    width: auto;
+    background-color: rgba(0, 0, 189, 0.7);
+    border: 1px solid black; /* Green border */
+    color: white; /* White text */
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    float: left; /* Float the buttons side by side */
+  }
+  
+.btn-group button:not(:last-child) {
+border-right: none; /* Prevent double borders */
+}
+
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+content: "";
+clear: both;
+display: table;
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+background-color: rgba(0, 0, 189, 0.9);
+}
