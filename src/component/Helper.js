@@ -1,19 +1,18 @@
-import {Chart} from 'chart.js/auto'
 
 export const getCityData = async (cityName) => {
     const apiKey = 'apikey=TMbeIiQWLVDXoogprT9TQPr46u4pMR8R';
     
     const cityDataUrl = `http://dataservice.accuweather.com/locations/v1/cities/search?${apiKey}&q=${cityName}`;
-    const [cityData] = await fetchData(cityDataUrl);
-    const {Key} = cityData;
+    const [ cityData ] = await fetchData(cityDataUrl);
+    const { Key } = cityData;
 
     const currentDataUrl = `http://dataservice.accuweather.com/currentconditions/v1/${Key}?${apiKey}&details=true`;
-    const [currentData] = await fetchData(currentDataUrl);
+    const [ currentData ] = await fetchData(currentDataUrl);
 
     const forecastUrl = `http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/${Key}?${apiKey}&details=true&metric=true`;
     const forecastData = await fetchData(forecastUrl);
 
-   return {cityData, currentData, forecastData};
+   return { cityData, currentData, forecastData };
 }
 
 export function getIconUrl(iconNum){
@@ -26,9 +25,9 @@ export function getHours(cityForecast){
     let value = []
 
     cityForecast.forEach((hour)=>{
-      const {EpochDateTime} = hour;
+      const { EpochDateTime } = hour;
       const converted = epochIntoHour(EpochDateTime);
-      value = [...value, converted];
+      value = [ ...value, converted ];
     })
 
     console.log('hours', value);
@@ -61,15 +60,15 @@ export function getForecastData(forecastData){
   let temperatures = [];
   let precipitations = [];
   forecastData.forEach((hour)=>{
-      const {Temperature, PrecipitationProbability} = hour;
-      const {Value} = Temperature;
+      const { Temperature, PrecipitationProbability } = hour;
+      const { Value } = Temperature;
       temperatures.push(Value);
       precipitations.push(PrecipitationProbability);
   })
-  console.log ({hours, temperatures, precipitations})
+  console.log ({ hours, temperatures, precipitations })
   
 
-  return {hours, temperatures, precipitations}
+  return { hours, temperatures, precipitations }
 }
 
 export function getNewConfig(newLabels, newData, label){
@@ -84,6 +83,6 @@ export function getNewConfig(newLabels, newData, label){
     ]
   };
 
-  return {data};
+  return { data };
 
 }

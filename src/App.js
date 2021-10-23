@@ -6,16 +6,20 @@ import './App.css';
 
 const App = () => {
 
-  const [data, setData] = useState({});
-  const [chartData, setChartData] = useState({});
-  const [config, setConfig] = useState({});
+  const [ data, setData ] = useState({});
+  const [ chartData, setChartData ] = useState({});
+  const [ config, setConfig ] = useState({});
   const searchInputRef = createRef();
 
-  const setCityData = async () =>{
+  const setCityData = async () => {
     const searchName = searchInputRef.current.value;
     const data = await getCityData(searchName);
     const chartData = getForecastData(data.forecastData);
-    const config = getNewConfig(chartData.hours, chartData.temperatures, 'Temperatures Forecast')
+    const config = getNewConfig(
+      chartData.hours, 
+      chartData.temperatures, 
+      'Temperatures Forecast'
+    )
 
     setData(data)
     setChartData(chartData)
@@ -23,27 +27,34 @@ const App = () => {
   }
 
   const setTempChart = () => {
-    const newConfig = getNewConfig(chartData.hours, chartData.temperatures, 'Temperatures Forecast');
+    const newConfig = getNewConfig(
+      chartData.hours, 
+      chartData.temperatures, 
+      'Temperatures Forecast'
+    );
     setConfig(newConfig)
   }
 
   const setPrecipitationChart = () => {
-    const newConfig = getNewConfig(chartData.hours, chartData.precipitations, 'Precipitations Probability');
+    const newConfig = getNewConfig(
+      chartData.hours, 
+      chartData.precipitations, 
+      'Precipitations Probability'
+    );
     setConfig(newConfig)
   }
   
   return (
     <div >
       <Search 
-        searchRef = {searchInputRef}
-        onSearchHandler={setCityData}
-      >
-      </Search>
+        searchRef = { searchInputRef }
+        onSearchHandler={ setCityData }
+      />
       <Weather 
-        data={data}
-        chartData={config}
-        tempChartHandler = {setTempChart}
-        percipitationChartHandler = {setPrecipitationChart}
+        data={ data }
+        chartData={ config }
+        tempChartHandler = { setTempChart }
+        percipitationChartHandler = { setPrecipitationChart }
       />
     </div>
   );
