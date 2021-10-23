@@ -1,91 +1,89 @@
-*{
+* {
     margin:0;
     padding:0;
 }
 
-h1{
+h1 {
     font-size: 3em;
 }
 
-input{
+input {
     border: 1px solid black;
-    padding: 5px;
     margin: 25px 10px;
+    padding: 5px;
 }
 
-sup{
+sup {
     color: red;
 }
 
-button{
+button {
+    background-color: rgba(0, 0, 189, 0.7);
     border: none;
+    color: white;
     padding: 5px;
     width: 50px;
-    color: white;
-    background-color: rgba(0, 0, 189, 0.7);
 }
 
 button:hover {
     background-color: rgba(0, 0, 189, 0.9);
 }
 
-.container{
-    text-align: center;
+.container {
     background-color: rgb(240, 240, 240);
     font-size: 16px;
     min-height: 150px;
+    text-align: center;
 }
 
 .row {
+    align-items: center;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    align-items: center;
 }
 
-.weather{
+.weather {
     min-height: 300px;
 }
 
-.city-weather{
+.city-weather {
     display: flex;
     font-size: 1.8em;
     padding: 10px;
 }
 
-.city-details > div{
-    text-align: center;
+.city-details > div {
     margin: 10px;
+    text-align: center;
 }
 
-.forecast-chart{
-    padding:0px 200px;
+.forecast-chart {
     height: 50px;
+    padding:0px 200px;
 }
 
 .btn-group button {
-    margin: 30px 0px 0px;
-    width: auto;
     background-color: rgba(0, 0, 189, 0.7);
-    border: 1px solid black; /* Green border */
-    color: white; /* White text */
-    padding: 10px 24px; /* Some padding */
-    cursor: pointer; /* Pointer/hand icon */
-    float: left; /* Float the buttons side by side */
-  }
+    border: 1px solid black; 
+    color: white; 
+    cursor: pointer;
+    float: left;
+    margin: 30px 0px 0px;
+    padding: 10px 24px;
+    width: auto;
+}
   
 .btn-group button:not(:last-child) {
-border-right: none; /* Prevent double borders */
+    border-right: none;
 }
 
-/* Clear floats (clearfix hack) */
 .btn-group:after {
-content: "";
-clear: both;
-display: table;
+    clear: both;
+    content: "";
+    display: table;
 }
 
-/* Add a background color on hover */
 .btn-group button:hover {
-background-color: rgba(0, 0, 189, 0.9);
+    background-color: rgba(0, 0, 189, 0.9);
 }
