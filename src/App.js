@@ -1,74 +1,52 @@
-import React, {Component, createRef} from "react";
+import React, { useState, createRef} from "react";
 import { getCityData, getForecastData, getNewConfig } from "./component/Helper";
 import Search from "./component/Search";
 import Weather from "./component/Weather";
-import ForecastChart from "./component/ForecastChart";
 import './App.css';
 
+const App = () => {
 
-class App extends Component{
+  const [data, setData] = useState({});
+  const [chartData, setChartData] = useState({});
+  const [config, setConfig] = useState({});
+  const searchInputRef = createRef();
 
-  constructor(props){
-    super(props);
-    this.state = {
-      data:{},
-      chartData:{
-        
-      },
-    }
-    this.searchInputRef = createRef();
-    this.chartCanavsRef = createRef();
-  }
-
-  async componentDidMount(){
-  }
-
-  setCityData = async () =>{
-    const searchName = this.searchInputRef.current.value;
+  const setCityData = async () =>{
+    const searchName = searchInputRef.current.value;
     const data = await getCityData(searchName);
     const chartData = getForecastData(data.forecastData);
     const config = getNewConfig(chartData.hours, chartData.temperatures, 'Temperatures Forecast')
 
-    this.setState({
-      data,
-      chartData,
-      config
-    });
-    
-    // this.setChartData();
-    console.log('App State after Finding',this.state)
+    setData(data)
+    setChartData(chartData)
+    setConfig(config)
   }
 
-  setTempChart = () => {
-    const {chartData} = this.state;
-    const config = getNewConfig(chartData.hours, chartData.temperatures, 'Temperatures Forecast');
-    this.setState({config})
+  const setTempChart = () => {
+    const newConfig = getNewConfig(chartData.hours, chartData.temperatures, 'Temperatures Forecast');
+    setConfig(newConfig)
   }
 
-  setPrecipitationChart = () => {
-    const {chartData} = this.state;
-    const config = getNewConfig(chartData.hours, chartData.precipitations, 'Precipitations Probability');
-    this.setState({config})
+  const setPrecipitationChart = () => {
+    const newConfig = getNewConfig(chartData.hours, chartData.precipitations, 'Precipitations Probability');
+    setConfig(newConfig)
   }
-
-  render(){
-    const {data} = this.state;
-    return (
-      <div >
-        <Search 
-          searchRef = {this.searchInputRef}
-          onSearchHandler={this.setCityData}
-        >
-        </Search>
-        <Weather 
-          data={data}
-          chartData={this.state.config}
-          tempChartHandler = {this.setTempChart}
-          percipitationChartHandler = {this.setPrecipitationChart}
-        />
-      </div>
-    );
-  }
+  
+  return (
+    <div >
+      <Search 
+        searchRef = {searchInputRef}
+        onSearchHandler={setCityData}
+      >
+      </Search>
+      <Weather 
+        data={data}
+        chartData={config}
+        tempChartHandler = {setTempChart}
+        percipitationChartHandler = {setPrecipitationChart}
+      />
+    </div>
+  );
 }
 
 export default App;
